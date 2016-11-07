@@ -14,6 +14,8 @@ engine = TestDatetime.get_persistent_store_engine('test_datetime_db_engine')
 SessionMaker = sessionmaker(bind=engine)
 Base = declarative_base()
 
+# DateTime_Format = '%Y-%m-%dT%X.%f'
+DateTime_Format = '%Y-%m-%dT%H:%M:%S.%f'
 
 class TestDatetimeTable(Base):
     """
@@ -44,7 +46,7 @@ class TestDatetimeTable(Base):
             print >> sys.stderr, datetime_obj
             logger.debug(datetime_str)
 
-            datetime_str = datetime_obj.strftime('%Y-%m-%dT%X.%f')
+            datetime_str = datetime_obj.strftime(DateTime_Format)
 
             print >> sys.stderr, "22222222222222222222222222222222222222222222222222"
             logger.debug("322222222222222222222222222222222222222222222222222")
