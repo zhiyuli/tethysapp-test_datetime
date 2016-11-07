@@ -1,0 +1,15 @@
+{% extends "test_datetime/base.html" %}
+
+{% block app_content %}
+  <h1>Welcome!</h1>
+  <p>Congratulations on creating a new Tethys app!</p>
+  <h1>String in DB</h1>
+  {{rec_list}}
+  <h1>converted</h1>
+  {{rec_list_2}}
+{% endblock %}
+
+{% block app_actions %}
+  <a href="" class="btn btn-default">Next</a>
+  <a href="" class="btn btn-default">Back</a>
+{% endblock %}
