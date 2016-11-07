@@ -12,7 +12,7 @@ def home(request):
     """
     print >>sys.stderr, "1122334112233411223341122334112233411223341122334112233411223341122334"
 
-    raise Exception("77777777777777777777777777777777777777")
+  
     TestDatetimeTable.add_record()
     session = SessionMaker()
     all_records = session.query(TestDatetimeTable).all()
