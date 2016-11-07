@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .model import engine, Base, TestDatetimeTable, SessionMaker, DateTime_Format
 from datetime import datetime
 import sys
-
+import locale
 
 @login_required()
 def home(request):
@@ -13,7 +13,7 @@ def home(request):
     """
     print >>sys.stderr, "1122334112233411223341122334112233411223341122334112233411223341122334"
 
-
+    locale_str = locale.getlocale()
     TestDatetimeTable.add_record()
     session = SessionMaker()
     all_records = session.query(TestDatetimeTable).all()
@@ -45,7 +45,8 @@ def home(request):
                "rec_list_saved_obj": rec_list_saved_obj,
                "rec_list_parsed_obj": rec_list_parsed_obj,
                "status": status,
-               "status2": status2
+               "status2": status2,
+               "locale_str": locale_str
                }
 
     return render(request, 'test_datetime/home.html', context)
