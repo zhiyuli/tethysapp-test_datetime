@@ -1,7 +1,7 @@
 # Put your persistent store models in this file
 import sys
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, String, Integer
+from sqlalchemy import Column, String, Integer, DateTime
 from sqlalchemy.orm import sessionmaker
 
 from .app import TestDatetime
@@ -24,25 +24,27 @@ class TestDatetimeTable(Base):
     # Columns
     id = Column(Integer, primary_key=True)
     datetime_str = Column(String(50), nullable=True)
+    datetime_obj = Column(DateTime(), nullable=True)
 
-    def __init__(self, datetime_str):
+    def __init__(self, datetime_str, datetime_obj):
         """
         Constructor for an event
         """
 
         self.datetime_str = datetime_str
+        self.datetime_obj = datetime_obj
 
     @staticmethod
-    def add_record(datetime_str=None):
+    def add_record(datetime_str=None, datetime_obj=None):
         if datetime_str is None:
-            now_obj = datetime.now()
+            datetime_obj = datetime.now()
 
             print >> sys.stderr, "1111111111111111111111111111111111111111111111111"
             logger.debug("21111111111111111111111111111111111111111111111111")
-            print >> sys.stderr, now_obj
+            print >> sys.stderr, datetime_obj
             logger.debug(datetime_str)
 
-            datetime_str = now_obj.strftime('%Y-%m-%dT%X.%f')
+            datetime_str = datetime_obj.strftime('%Y-%m-%dT%X.%f')
 
             print >> sys.stderr, "22222222222222222222222222222222222222222222222222"
             logger.debug("322222222222222222222222222222222222222222222222222")
@@ -57,5 +59,6 @@ class TestDatetimeTable(Base):
         logger.debug(datetime_str)
 
         session.add(
-            TestDatetimeTable(datetime_str=datetime_str))
+            TestDatetimeTable(datetime_str=datetime_str, datetime_obj=datetime_obj))
+
         session.commit()
