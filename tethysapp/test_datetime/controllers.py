@@ -15,6 +15,10 @@ def home(request):
 
     locale_str = locale.getlocale(locale.LC_TIME)
 
+    date_and_time = locale.nl_langinfo(locale.D_T_FMT)
+    date = locale.nl_langinfo(locale.D_FMT)
+    time = locale.nl_langinfo(locale.T_FMT)
+
     TestDatetimeTable.add_record()
     session = SessionMaker()
     all_records = session.query(TestDatetimeTable).all()
@@ -47,7 +51,11 @@ def home(request):
                "rec_list_parsed_obj": rec_list_parsed_obj,
                "status": status,
                "status2": status2,
-               "locale_str": locale_str
+               "locale_str": locale_str,
+               "date": date,
+               "time":time,
+               "date_and_time": date_and_time
+
                }
 
     return render(request, 'test_datetime/home.html', context)
