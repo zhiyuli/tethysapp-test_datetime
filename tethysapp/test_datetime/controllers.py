@@ -13,7 +13,8 @@ def home(request):
     """
     print >>sys.stderr, "1122334112233411223341122334112233411223341122334112233411223341122334"
 
-    locale_str = locale.getlocale()
+    locale_str = locale.getlocale(locale.LC_TIME)
+
     TestDatetimeTable.add_record()
     session = SessionMaker()
     all_records = session.query(TestDatetimeTable).all()
